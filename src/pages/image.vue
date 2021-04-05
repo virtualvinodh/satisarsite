@@ -7,7 +7,12 @@
       </div>
       <q-uploader url="" clearable extensions=".jpg, .jpeg, .png, .bmp" @add="updateImage" stack-label="Select Image" auto-expand
                hide-upload-button ref="uploadF" :style="{width:'250px'}" class="q-ma-md" @remove:cancel="removeFile"/>
-      <q-input class="q-ma-md sharada" v-model="textInput" stack-label="Input Text" @input="convert" placeholder="Enter text in Sharada Script" type="textarea" ref="inputtext"> </q-input>
+      <span class="q-ma-md"><i>Enter text</i></span><br/>
+      <textarea v-model="textInput" class="textarea_input q-ma-md sharada" rows="3"
+      oninput='this.style.height = "";this.style.height = this.scrollHeight + 3 + "px"'/>
+      <div class="q-ma-md">
+        <div id="KeymanWebControl" display="block"></div>
+      </div>
       <q-color-picker v-model="color" class="q-ma-md" @input="changeColor" stack-label="Color"></q-color-picker><br/>
       <q-btn label="Download image" class="q-ml-md print-hide" @click="printDocument"></q-btn>
       <canvas id="c" :width="canvasWidth" :height="canvasWidth" class="q-ma-md"></canvas>
@@ -67,6 +72,10 @@ export default {
     this.canvas2 = new fabric.Canvas('d')
 
     this.canvasJson = JSON.stringify(this.canvas)
+
+    for (let el of document.getElementsByTagName('textarea')) {
+      console.log(typeof window.keyman.attachToControl(el))
+    }
   },
   methods: {
     sleep: function (ms) {
@@ -236,5 +245,17 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.textarea_input {
+  width: 300px;
+  resize: horizontal;
+  outline: none !important;
+  border-style: none;
+  box-shadow: 3px #719ECE;
+  border-bottom: 0.5px solid grey;
+}
+
+.textarea_input:focus {
+  border-bottom: 2px solid #424242;
+}
 </style>

@@ -54,14 +54,6 @@ export default [
   },
 
   {
-    path: '/tholkaappiyam',
-    component: () => import('layouts/default'),
-    children: [
-      { path: '', component: () => import('pages/tholkaappiyam') }
-    ]
-  },
-
-  {
     path: '/about',
     component: () => import('layouts/default'),
     children: [
@@ -86,42 +78,10 @@ export default [
   },
 
   {
-    path: '/download',
+    path: '/font-keyboard',
     component: () => import('layouts/default'),
     children: [
       { path: '', component: () => import('pages/download') }
-    ]
-  },
-
-  {
-    path: '/adinatha-manual',
-    component: () => import('layouts/default'),
-    children: [
-      { path: '', component: () => import('pages/adinatha-manual') }
-    ]
-  },
-
-  {
-    path: '/e-brahmi-manual',
-    component: () => import('layouts/default'),
-    children: [
-      { path: '', component: () => import('pages/e-brahmi-manual') }
-    ]
-  },
-
-  {
-    path: '/e-velvi-manual',
-    component: () => import('layouts/default'),
-    children: [
-      { path: '', component: () => import('pages/e-velvi-manual') }
-    ]
-  },
-
-  {
-    path: '/adinatha-manual',
-    component: () => import('layouts/default'),
-    children: [
-      { path: '', component: () => import('pages/adinatha-manual') }
     ]
   },
 

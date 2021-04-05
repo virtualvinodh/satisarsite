@@ -78,11 +78,11 @@
           <q-item-side icon="book" />
           <q-item-main label="Reading Practice" sublabel="𑆥𑆜𑆤 𑆃𑆨𑇀𑆪𑆳𑆱𑆂" class="sharada" />
         </q-item>
-         <q-item to="/download"  v-if="!$q.platform.is.cordova">
+         <q-item to="/font-keyboard"  v-if="!$q.platform.is.cordova">
           <q-item-side icon="cloud download" />
-          <q-item-main label="Download" sublabel="𑆝𑆿𑆤𑇀𑆬𑆾𑆝𑇀" class="sharada" />
+          <q-item-main label="Font & Keyboard" sublabel="" class="sharada" />
         </q-item>
-         <q-item @click.native="openURL('http://www.virtualvinodh.com/aksharamukha')" link>
+         <q-item @click.native="openURL('http://aksharamukha.appspot.com/converter?target=Sharada')" link>
           <q-item-side icon="developer board" />
               <q-item-main label="Aksharamukha" sublabel="𑆃𑆑𑇀𑆰𑆫𑆩𑆶𑆒" class="sharada" />
         </q-item>

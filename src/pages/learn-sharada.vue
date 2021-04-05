@@ -170,9 +170,6 @@ Guide Script
 
 <script>
 import {QCard, QCardTitle, QCardMain, QCardMedia, QCardActions, QToggle, QPageSticky, QTabs, QTab, QTabPane, Notify, QBtnToggle} from 'quasar'
-import Brahmi from '../components/Brahmi'
-import BrahmiE from '../components/BrahmiE'
-import Vatteluttu from '../components/Vatteluttu'
 import VueFlip from 'vue-flip'
 import Learncard from '../components/Learncard'
 import Flipcard from '../components/Flipcard'
@@ -187,9 +184,6 @@ export default {
     QCardMain,
     QCardMedia,
     QCardActions,
-    Brahmi,
-    BrahmiE,
-    Vatteluttu,
     VueFlip,
     QToggle,
     Learncard,

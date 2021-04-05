@@ -12,16 +12,49 @@
     <link rel="icon" type="image/png" sizes="32x32" href="statics/icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="statics/icons/favicon-16x16.png">
 
-    <!-- <script src='https://s.keyman.com/kmw/engine/14.0.270/keymanweb.js'></script>
+<script src='https://s.keyman.com/kmw/engine/14.0.270/keymanweb.js'></script>
 <script src='https://s.keyman.com/kmw/engine/14.0.270/kmwuibutton.js'></script>
 <script>
-  (function(kmw) {
-    kmw.init({attachType:'auto'});
-    kmw.init({attachType:'auto'});
-    kmw.addKeyboards('@en'); // Loads default Thai keyboard from Keyman Cloud (CDN)
-    kmw.addKeyboards('@hi'); // Loads default Thai keyboard from Keyman Cloud (CDN)
-  })(keyman);
-</script> -->
+            (function(kmw) {
+              kmw.init({attachType:'manual'});
+              kmw.init({attachType:'manual'});
+              kmw.osk.hide();
+            })(keyman);
+
+            var debugKeyboards = [];
+(function() {
+  var kmw=KeymanWeb;
+  kmw.KRS({
+    KN:"sharada_unicode_phonetic",
+    KI:"Keyboard_sharada_unicode_phonetic",
+    KL:"sharada_unicode_phonetic",
+    KLC:"en",
+    KR:"Europe",
+    KRC:"eu",
+    KFont:{family:"Satisar Sharada"},
+    KOskFont:{family:"Satisar Sharada"},
+    KF:"statics/keyboards/sharada_unicode_phonetic.js"
+  });
+
+  kmw.KRS({
+    KN:"sharada_inscript",
+    KI:"Keyboard_sharada_inscript",
+    KL:"sharada_inscript",
+    KLC:"en",
+    KR:"Europe",
+    KRC:"eu",
+    KFont:{family:"Satisar Sharada"},
+    KOskFont:{family:"Satisar Sharada"},
+    KF:"statics/keyboards/sharada_inscript.js"
+  });
+
+  kmw.osk.hide();
+
+  debugKeyboards["sharada_unicode_phonetic"] = {
+    id:"sharada_unicode_phonetic",
+    version:"1.0"
+  };})();
+</script>
 
   </head>
   <body>

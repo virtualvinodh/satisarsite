@@ -1,9 +1,15 @@
-# Jinavani : Tamil Epigraphic Editor
+# Satisar : A Portal for Sharada
 
-When the great Jina preaches in the Samavasarana, it is said that the divine sound emanating from him gets perceived by the multitude of beings present in their own native tongues. This sound is often called as <i>Jinavani</i>. In a similar vein, we hope to shed light on the ancient Tamil scripts and make it perceivable to the beings in the present day. On a related note, many of the Tamil-Brahmi and Vatteluttu inscriptions are also of Jaina in nature.
+𑆤𑆩𑆯𑇀𑆯𑆳𑆫𑆢𑆳𑆪𑆽
+𑆤𑆩𑆱𑇀𑆠𑆼 𑆯𑆳𑆫𑆢𑆼 𑆢𑆼𑆮𑆴 𑆑𑆳𑆯𑇀𑆩𑆵𑆫𑆥𑆶𑆫𑆮𑆳𑆱𑆴𑆤𑆴 𑇅
+𑆠𑇀𑆮𑆳𑆩𑆲𑆁 𑆥𑇀𑆫𑆳𑆫𑇀𑆡𑆪𑆼 𑆤𑆴𑆠𑇀𑆪𑆁 𑆮𑆴𑆢𑇀𑆪𑆳𑆢𑆳𑆤𑆁 𑆖 𑆢𑆼𑆲𑆴 𑆩𑆼 𑇆
 
-ஜினேஸ்வரன் தமது சமவசரணத்தில் அமர்ந்து உபதேசிக்கும் போது, சர்வக்ஞனான சுவாமியிடம் இருந்து வெளிப்பட்ட திவ்விய  சப்தத்தை அங்கிருக்கும் அனைத்து ஜீவன்களும் தத்தமது மொழியினில் புரிந்துகொள்வனராம். இந்த சப்தத்தையே  <i>ஜினவாணி</i> என்றழைப்பர். இது போலவே, பண்டைய தமிழ் எழுத்துக்களை இக்காலத்தவரும் புரிந்து கொள்ளும் விதமாக இயற்றப்பட்ட  காரணத்தினால் ஜினவாணி என்றழைக்கப்பட்டது. பல்வேறு தமிழ் பிராமி மற்றும் வட்டெழுத்து கல்வெட்டுகளும் ஜைன சமய தொடர்புடையவையே.
+नमस्ते शारदे देवि काश्मीरपुरवासिनि ।
+त्वामहं प्रार्थये नित्यं विद्यादानं च देहि मे ॥
 
-Jinavani consists of a tool that transcribes modern Tamil into Tamil-Brahmi and Vatteluttu along with several other resources to learn these scripts. It can be reached at http://tamiljinavani.appspot.com
+namaste śārade devi kāśmīrapuravāsini .
+tvāmahaṃ prārthaye nityaṃ vidyādānaṃ ca dehi me ..
 
-The source code is released under GNU AGPL 3.0 license.
+This is meant to be a portal for the Sharada script. It provides various functionalities such as converting Devanagari/Romanized text into Sharada, directly composing in Sharada and various learning resources to practice Sharada.
+
+The source code is released under GNU AGPL 3.0

@@ -1,10 +1,19 @@
 <template>
   <q-page>
-    <br/>
-    <span class="q-ml-md q-mr-sm q-mb-md">Input</span>
     <q-btn-toggle
       condense
-      class="q-ma-md"
+      class="q-ma-sm"
+      v-model = "mode"
+      toggle-color="faded"
+      :options="[
+        {label: 'Type', value: 'typing'},
+        {label: 'Convert', value: 'convert'}
+      ]"
+    />
+    <span v-if="mode === 'convert'">
+    <q-btn-toggle
+      condense
+      class="q-ma-sm"
       v-model = "inputScript"
       toggle-color="faded"
       :options="[
@@ -14,25 +23,46 @@
         {label: 'HK', value: 'hk'}
       ]"
     />
-    <q-input
-     class="q-ma-sm print-hide"
-     type="textarea"
-     :max-height="200"
+    </span>
+    <span v-if="mode === 'typing'">
+    <div v-show="$q.platform.is.mobile" class="q-ma-sm">
+     <small>Use <img src="../statics/touch-keyboard.png" width="20px"/> key to change keyboard. </small>
+    <q-btn class="q-ma-sm" :dense="$q.platform.is.mobile" color="grey-6" v-if="layout=='sharada_unicode_phonetic'" @click="openURL('https://virtualvinodh.github.io/satisarsharada/keyboard.htm')">
+      Phon. Keymap
+    </q-btn>
+    </div>
+    <q-btn-toggle
+      v-show="$q.platform.is.desktop"
+      @input = "changeLayout"
+      class="q-ma-sm"
+      v-model = "layout"
+      toggle-color="faded"
+      :options="[
+        {label: 'Phonetic', value: 'sharada_unicode_phonetic'},
+        {label: 'Inscript', value: 'sharada_inscript'}
+      ]"
+    />
+    <q-btn class="q-ma-sm" color="grey-6" v-show="layout=='sharada_unicode_phonetic' && $q.platform.is.desktop" @click="openURL('https://virtualvinodh.github.io/satisarsharada/keyboard.htm')">
+      Phonetic Keymap
+    </q-btn>
+    <q-btn label="Display Keyboard" v-if="layout=='sharada_inscript'" @click="displayKeyboard" class="desktop-only"/>
+    </span>
+    <div
+    id="inputbox"
+     class="q-ma-sm print-hide sharada"
      autofocus
-     float-label="Enter text"
-     v-model="textInput"/>
-     <div class="q-ma-md">
+     >
+      <textarea v-model="textInput" class="textarea_input" :style="{'font-size': fontSize + 'px'}" rows="4"
+      oninput='this.style.height = "";this.style.height = this.scrollHeight + 3 + "px"'/>
+     </div>
+     <div class="q-ml-md mobile-only">
        <div id="KeymanWebControl" display="block"></div>
       </div>
-      <!--<QBtn color="grey-8" class="q-ml-md q-mb-md print-hide" @click="fontSize = fontSize + 10">
-        <q-icon name="zoom in" />
-      </QBtn>
-      <QBtn color="grey-8" class="q-ml-md q-mb-md print-hide" @click="fontSize = fontSize - 10">
-        <q-icon name="zoom out" />
-      </QBtn> -->
-      <q-input v-model="fontSize" float-label="Sharada Size" class="q-ml-md q-mb-md col-xs-1" style="width:100px; float: left"/>
-      <span class="q-ma-md"> <i>Style</i> </span>
-      <q-btn-toggle
+      <q-slider v-model="fontSize" float-label="Sharada Size" class="q-ml-md q-mb-md col-xs-1"
+         label-always :label-value="`${fontSize}px`" :min="10" :max="100" :step="2" @input="chagesizeKeyman"
+       style="width:340px; float: left"/> <br/>
+      <!--<span class="q-ma-md"> <i>Style</i> </span>
+       <q-btn-toggle
       class="q-mb-md"
       v-model = "script"
       toggle-color="faded"
@@ -40,14 +70,14 @@
         {label: 'Normal', value: 'normal'},
         {label: 'Compact', value: 'compact'},
       ]"
-    /> <br/><br/>
-      <QBtn color="grey-8" icon="file_copy" label="Copy" class="q-ml-md q-mb-md btn2 print-hide"
-      @click="copySource" :data-clipboard-text="convertDS(sanitize(textInput)).replace(/<br\/>/g, '\n')"></QBtn>
-      <QBtn color="grey-8" class="q-ml-md q-mb-md print-hide" icon="photo_camera" label="Image" @click="imageConvert(saveAsImage.bind(this))"> </QBtn>
+    /> -->
+      <QBtn color="grey-8" icon="file_copy" label="" class="q-ml-md q-mb-md btn2 print-hide"
+      @click="copySource" :data-clipboard-text="convertText(textInput).replace(/<br\/>/g, '\n')"></QBtn>
+      <QBtn color="grey-8" class="q-ml-md q-mb-md print-hide" icon="photo_camera" label="" @click="imageConvertInit"> </QBtn>
       <QBtn color="grey-8" class="q-ml-md q-mb-md print-hide" @click="imageConvert(shareCordova.bind(this))" icon="share" label="Share" v-if="$q.platform.is.cordova">
       </QBtn>
-      <QBtn color="grey-8" class="q-ml-md q-mb-md print-hide" icon="picture_as_pdf" label="Download" @click="printDocument"> </QBtn>
-      <div ref="brahmiText" class="q-pa-md" id="printbrahmi" :style="{'font-size': fontSize + 'px'}">
+      <QBtn color="grey-8" class="q-ml-md q-mb-md print-hide" icon="picture_as_pdf" label="" @click="printDocument"> </QBtn>
+      <div ref="brahmiText" class="q-pa-md" id="printbrahmi" :style="{'font-size': fontSize + 'px'}" v-if="mode == 'convert' || imageScreen">
         <p v-html="convertText(textInput).replace(/\n/g, '<br/>')" class="sharada" :class="script"></p>
       </div>
       <a :href="brahmiImg" ref="imgDownload" target="_system" :style="{'display': 'none'}" download="text.png"><button>Download</button></a>
@@ -90,16 +120,57 @@ export default {
   mixins: [ScriptMixin],
   data () {
     return {
-      textInput: 'नमस्ते शारदे देवि काश्मीरपुरवासिनि । \n त्वामहं प्रार्थये नित्यं विद्यादानं च देहि मे ॥',
+      textInput: '',
+      mode: 'typing',
+      keyboard: true,
+      layout: 'sharada_unicode_phonetic',
       fontSize: 25,
+      imageScreen: false,
       inputScript: 'devanagari',
       options: {},
       brahmiImg: '',
       script: 'normal'
     }
   },
+  mounted: function () {
+    for (let el of document.getElementsByTagName('textarea')) {
+      console.log(typeof window.keyman.attachToControl(el))
+    }
+    console.log(typeof window.keyman.setActiveKeyboard(this.layout))
+  },
+  watch: {
+    mode: function (newv, oldv) {
+      this.textInput = ''
+      if (newv === 'convert') {
+        for (let el of document.getElementsByTagName('textarea')) {
+          console.log(typeof window.keyman.disableControl(el))
+        }
+      }
+      if (newv === 'typing') {
+        for (let el of document.getElementsByTagName('textarea')) {
+          console.log(typeof window.keyman.enableControl(el))
+        }
+        console.log(typeof window.keyman.setActiveKeyboard(this.layout))
+
+        if (this.layout === 'sharada_unicode_phonetic') {
+          console.log(window.keyman.osk._Enabled = false)
+        }
+      }
+    }
+  },
   methods: {
     openURL,
+    chagesizeKeyman: function () {
+      document.getElementsByClassName('keymanweb-input')[0].style.fontSize = this.fontSize + 'px'
+      document.getElementsByClassName('keymanweb-input')[0].style.height = document.getElementsByClassName('textarea_input')[0].style.height
+    },
+    displayKeyboard: function () {
+      console.log(window.keyman.osk._Enabled = true)
+      console.log(window.keyman.osk)
+    },
+    changeLayout: function () {
+      console.log(typeof window.keyman.setActiveKeyboard(this.layout))
+    },
     copySource: function () {
       this.$q.notify({
         type: 'info',
@@ -171,10 +242,17 @@ export default {
     },
     sanitize: function (html) {
       sanitizeHtml.defaults.allowedTags.push('font')
-      console.log(sanitizeHtml.defaults.allowedAttributes)
-      console.log(typeof sanitizeHtml.defaults.allowedAttributes)
       sanitizeHtml.defaults.allowedAttributes['font'] = ['size']
       return sanitizeHtml(html)
+    },
+    sleep: function (ms) {
+      return new Promise(resolve => setTimeout(resolve, ms))
+    },
+    imageConvertInit: async function () {
+      this.imageScreen = true
+      await this.sleep(2000)
+
+      this.imageConvert(this.saveAsImage.bind(this))
     },
     imageConvert: function (fnc) {
       var node = this.$refs.brahmiText
@@ -201,6 +279,8 @@ export default {
           dhis.brahmiImg = cropped
 
           image2.onload = fnc
+
+          dhis.imageScreen = false
         }
       })
     },
@@ -309,5 +389,18 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.textarea_input {
+  width: 100%;
+  resize: horizontal;
+  outline: none !important;
+  border-style: none;
+  max-height: 600px;
+  box-shadow: 3px #719ECE;
+  border-bottom: 0.5px solid grey;
+}
+
+.textarea_input:focus {
+  border-bottom: 2px solid #424242;
+}
 </style>
