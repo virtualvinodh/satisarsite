@@ -15,6 +15,7 @@
       condense
       class="q-ma-sm"
       v-model = "inputScript"
+      @input="focusTextarea"
       toggle-color="faded"
       :options="[
         {label: 'Devanagari', value: 'devanagari'},
@@ -50,17 +51,18 @@
     <div
     id="inputbox"
      class="q-ma-sm print-hide sharada"
-     autofocus
      >
-      <textarea v-model="textInput" class="textarea_input" :style="{'font-size': fontSize + 'px'}" rows="4"
-      oninput='this.style.height = "";this.style.height = this.scrollHeight + 3 + "px"'/>
+      <textarea v-model="textInput" class="textarea_input" :style="mode == 'typing' ? {'font-size': fontSize + 'px'} : ''" rows="4"
+      autofocus v-if="!$q.platform.is.mobile"/>
+      <textarea v-model="textInput" class="textarea_input" :style="mode == 'typing' ? {'font-size': fontSize + 'px'} : ''" rows="4"
+      autofocus v-else/>
      </div>
      <div class="q-ml-md mobile-only">
        <div id="KeymanWebControl" display="block"></div>
       </div>
       <q-slider v-model="fontSize" float-label="Sharada Size" class="q-ml-md q-mb-md col-xs-1"
-         label-always :label-value="`${fontSize}px`" :min="10" :max="100" :step="2" @input="chagesizeKeyman"
-       style="width:340px; float: left"/> <br/>
+         label-always :label-value="`${fontSize}px`" :min="10" :max="100" :step="2"
+       style="width:340px; float: left" v-if="!($q.platform.is.mobile && mode != 'convert')"/> <br/>
       <!--<span class="q-ma-md"> <i>Style</i> </span>
        <q-btn-toggle
       class="q-mb-md"
@@ -145,6 +147,9 @@ export default {
         for (let el of document.getElementsByTagName('textarea')) {
           console.log(typeof window.keyman.disableControl(el))
         }
+        for (let el of document.getElementsByTagName('textarea')) {
+          el.focus()
+        }
       }
       if (newv === 'typing') {
         for (let el of document.getElementsByTagName('textarea')) {
@@ -156,17 +161,24 @@ export default {
           console.log(window.keyman.osk._Enabled = false)
         }
       }
+      for (let el of document.getElementsByTagName('textarea')) {
+        el.focus()
+      }
     }
   },
   methods: {
     openURL,
-    chagesizeKeyman: function () {
-      document.getElementsByClassName('keymanweb-input')[0].style.fontSize = this.fontSize + 'px'
-      document.getElementsByClassName('keymanweb-input')[0].style.height = document.getElementsByClassName('textarea_input')[0].style.height
+    focusTextarea: function () {
+      for (let el of document.getElementsByTagName('textarea')) {
+        el.focus()
+      }
     },
     displayKeyboard: function () {
       console.log(window.keyman.osk._Enabled = true)
       console.log(window.keyman.osk)
+      for (let el of document.getElementsByTagName('textarea')) {
+        el.focus()
+      }
     },
     changeLayout: function () {
       console.log(typeof window.keyman.setActiveKeyboard(this.layout))
@@ -250,14 +262,6 @@ export default {
     },
     imageConvertInit: async function () {
       this.imageScreen = true
-      await this.sleep(2000)
-
-      this.imageConvert(this.saveAsImage.bind(this))
-    },
-    imageConvert: function (fnc) {
-      var node = this.$refs.brahmiText
-      console.log(node)
-      var dhis = this
 
       this.$q.notify({
         type: 'info',
@@ -265,6 +269,17 @@ export default {
         position: 'center',
         timeout: 500
       })
+
+      if (this.mode === 'typing') {
+        await this.sleep(2000)
+      }
+
+      this.imageConvert(this.saveAsImage.bind(this))
+    },
+    imageConvert: function (fnc) {
+      var node = this.$refs.brahmiText
+      console.log(node)
+      var dhis = this
 
       html2canvas(node).then(function (canvas) {
         var image = new Image()
@@ -392,10 +407,10 @@ export default {
 <style scoped>
 .textarea_input {
   width: 100%;
-  resize: horizontal;
+  height: 30vh;
+  resize:none;
   outline: none !important;
   border-style: none;
-  max-height: 600px;
   box-shadow: 3px #719ECE;
   border-bottom: 0.5px solid grey;
 }

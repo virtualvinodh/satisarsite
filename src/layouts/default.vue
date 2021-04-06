@@ -241,6 +241,9 @@ export default {
 .iast {
   font-family: 'Noto Sans';
 }
+.noto {
+  font-family: 'Noto Sans';
+}
 .compact {
   font-feature-settings: "ss01";
 }
