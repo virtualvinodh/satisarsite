@@ -407,11 +407,11 @@ export default {
 <style scoped>
 .textarea_input {
   width: 100%;
-  height: 30vh;
-  resize:none;
+  height: 20vh;
   outline: none !important;
   border-style: none;
   box-shadow: 3px #719ECE;
+  background-color: #F5F5F5;
   border-bottom: 0.5px solid grey;
 }
 
