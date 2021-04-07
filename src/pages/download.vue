@@ -17,7 +17,9 @@
 
      <div class="q-body-1">You may have to adjust the line height to ensure that the lines do not collide with each other, particularly while rendering Sanskrit texts with complex Samyuktakasharas/Conjuncts </div>
     <div class="q-display-1 q-mt-lg q-mb-md">Offline Keyboard</div>
-    <div class="q-body-1"><a href="https://github.com/virtualvinodh/sharada-keyman-keyboard/blob/main/build/keymandesktop-sharada.exe?raw=true">Integrated Keyman Keyboard (if you don't have Keyman installed in your system)</a></div>
+    <div class="q-body-1"><a href="https://github.com/virtualvinodh/sharada-keyman-keyboard/blob/main/build/keymandesktop-sharada.exe?raw=true">Integrated Keyman
+    Keyboard (if you don't have Keyman installed in your system)</a></div> <br/>
+     <div class="q-body-1">Double-clicking on the downloaded .exe file might result in a dialogue box that asks for your confirmation to proceed with the installation. Please select 'Yes' </div> <br/>
     <div class="q-body-1"><a href="https://github.com/virtualvinodh/sharada-keyman-keyboard/raw/main/build/sharada.kmp">Sharada Keyman Package (if Keyman is already installed)</a></div>
     <div class="q-body-1"><a href="https://github.com/virtualvinodh/sharada-keyman-keyboard/blob/main/source/how_to_use.pdf" target="_blank">Keyman Keyboard Instructions</a></div>
     <div class="q-display-1 q-mt-lg q-mb-md">App</div>

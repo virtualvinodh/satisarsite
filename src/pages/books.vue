@@ -7,6 +7,7 @@
      :options="books"
      class="col-md-3"
     />
+    <q-spinner-circles  size="30px" v-show="loading"/>
   </div>
     Guide Script <q-btn-toggle
       class="col-lg-2 q-ma-md"
@@ -34,6 +35,7 @@ Sharada Style
       <QBtn color="grey-8" class="q-ma-md print-hide" @click="fontSize = fontSize - 3">
         <q-icon name="zoom out" />
       </QBtn>
+  <small><div class="q-body-1 q-mt-md"><i> For large texts, this page may take a while to render. Please wait for the page to respond and reload on selection. </i> </div></small>
   <div :style="'font-size:' + fontSize + 'px'" class="text q-mt-xl">
     <div v-for="(line, i) in textContent[book].split('\n')" :key="'line' + i">
     <span v-for="(word, i) in line.split(' ')" :key="'word' + i" class="q-ml-md">
@@ -77,7 +79,7 @@ rb, rt {
 </style>
 
 <script>
-import {QRadio, QBtn, QField, QBtnToggle, QToggle, QSlider, QRange, QSelect, QTooltip} from 'quasar'
+import {QRadio, QBtn, QField, QBtnToggle, QToggle, QSlider, QRange, QSelect, QTooltip, QSpinnerCircles} from 'quasar'
 import { ScriptMixin } from '../mixins/ScriptMixin'
 
 export default {
@@ -85,6 +87,7 @@ export default {
   mixins: [ScriptMixin],
   components: {
     QRadio,
+    QSpinnerCircles,
     QTooltip,
     QSelect,
     QBtn,
@@ -110,6 +113,7 @@ export default {
   data () {
     return {
       fontSize: 30,
+      loading: false,
       hideguide: false,
       script: 'devanagari',
       scripttype: 'normal',
