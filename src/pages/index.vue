@@ -52,9 +52,9 @@
     id="inputbox"
      class="q-ma-sm print-hide sharada"
      >
-      <textarea v-model="textInput" class="textarea_input" :style="mode == 'typing' ? {'font-size': fontSize + 'px'} : ''" rows="4"
+      <textarea v-model="textInput" class="textarea_input" id="textdesktop" :style="mode == 'typing' ? {'font-size': fontSize + 'px'} : ''" rows="4"
       autofocus v-if="!$q.platform.is.mobile"/>
-      <textarea v-model="textInput" class="textarea_input" :style="mode == 'typing' ? {'font-size': fontSize + 'px'} : ''" rows="4"
+      <textarea v-model="textInput" class="textarea_input" id="textmobile" :style="mode == 'typing' ? {'font-size': '25' + 'px'} : ''" rows="4"
       autofocus v-else/>
      </div>
      <div class="q-ml-md mobile-only">
@@ -405,7 +405,7 @@ export default {
 </script>
 
 <style scoped>
-.textarea_input {
+#textmobile {
   width: 100%;
   height: 20vh;
   outline: none !important;
@@ -415,7 +415,21 @@ export default {
   border-bottom: 0.5px solid grey;
 }
 
-.textarea_input:focus {
+#textmobile:focus {
+  border-bottom: 2px solid #424242;
+}
+
+#textdesktop {
+  width: 100%;
+  height: 30vh;
+  outline: none !important;
+  border-style: none;
+  box-shadow: 3px #719ECE;
+  background-color: #F5F5F5;
+  border-bottom: 0.5px solid grey;
+}
+
+#textdesktop:focus {
   border-bottom: 2px solid #424242;
 }
 </style>

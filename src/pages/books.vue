@@ -35,15 +35,15 @@ Sharada Style
       <QBtn color="grey-8" class="q-ma-md print-hide" @click="fontSize = fontSize - 3">
         <q-icon name="zoom out" />
       </QBtn>
-  <small><div class="q-body-1 q-mt-md"><i> For large texts, this page may take a while to render. Please wait for the page to respond and reload on selection. </i> </div></small>
+  <small><div class="q-body-1 q-mt-md"><i> For large texts, this page may take a while to render. Please wait for the page to respond on selection. </i> </div></small>
   <div :style="'font-size:' + fontSize + 'px'" class="text q-mt-xl">
     <div v-for="(line, i) in textContent[book].split('\n')" :key="'line' + i">
     <span v-for="(word, i) in line.split(' ')" :key="'word' + i" class="q-ml-md">
     <span v-if="!hideguide">
       <span v-for="(syllable, i) in syllabize(word)" :key="'syllable' + i" class="q-ml-xs">
        <ruby class="sharada" :class="scripttype">{{convertDS(syllable)}}
-       <rt class="noto" v-if="script === 'roman'">{{convertDR(syllable)}}</rt>
-       <rt class="noto" v-if="script === 'devanagari'">{{syllable}}</rt>
+       <rt class="noto guide" v-if="script === 'roman'">{{convertDR(syllable)}}</rt>
+       <rt class="noto guide" v-if="script === 'devanagari'">{{syllable}}</rt>
        </ruby>
       </span>
     </span>
@@ -75,6 +75,9 @@ rb, rt {
 
 .text {
   line-height:2em;
+}
+.guide {
+  color: grey;
 }
 </style>
 
