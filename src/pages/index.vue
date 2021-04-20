@@ -95,6 +95,7 @@ import sanitizeHtml from 'sanitize-html'
 import html2canvas from 'html2canvas'
 import Controls from '../components/Controls'
 import { ScriptMixin } from '../mixins/ScriptMixin'
+import {changeDpiDataUrl} from 'changedpi'
 
 var pdfMake = require('pdfmake')
 
@@ -283,7 +284,8 @@ export default {
 
       html2canvas(node).then(function (canvas) {
         var image = new Image()
-        image.src = canvas.toDataURL('image/png', 1)
+
+        image.src = changeDpiDataUrl(canvas.toDataURL('image/png', 1), 300)
         dhis.brahmiImg = image.src
         image.onload = function () {
           dhis.brahmiImg = image.src

@@ -14,6 +14,7 @@
     "@sanskrit-coders/sanscript": "^1.1.0",
     "axios": "^0.18.0",
     "blueimp-canvas-to-blob": "^3.16.0",
+    "changedpi": "^1.0.4",
     "clipboard": "^2.0.8",
     "cordova-save-image-gallery": "0.0.26",
     "dom-to-image": "^2.6.0",
