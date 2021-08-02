@@ -20,9 +20,9 @@ tvāmahaṃ prārthaye nityaṃ vidyādānaṃ ca dehi me ..
 
         </div>
         <br/>
-        <div class="q-body-1">This is meant to be a portal for the Sharada script. It provides various functionalities such as conver ting Devanagari/Romanized text into Sharada, directly composing in Sharada and various learning resources to practice Sharada.</div> <br/>
+        <div class="q-body-1">This is meant to be a portal for the Sharada script. It provides various functionalities such as converting Devanagari/Romanized text into Sharada, directly composing in Sharada and various learning resources to practice Sharada.</div> <br/>
 
-        <div class="q-body-1">The source code for the site is released under GNU AGPL and can be found at <a href="https://github.com/virtualvinodh/satisarsite">Github</a> The font is released under SIL OFL can be found at <a href="https://github.com/virtualvinodh/satisarsharada">Github</a> .</div>
+        <div class="q-body-1">The source code for the site is released under GNU AGPL and can be found at <a href="https://github.com/virtualvinodh/satisarsite">Github</a> The font is released under SIL OFL and can be found at <a href="https://github.com/virtualvinodh/satisarsharada">Github</a> .</div>
         <br/>
         <div class="q-body-1">The site and font were developed in collaboration with the <a href="http://www.shardalipi.com/">Core Sharada Team Foundation</a> (info@shardalipi.com)</div>
 

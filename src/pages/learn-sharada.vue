@@ -87,7 +87,13 @@ Guide Script
    <div v-if="showCompound=='summary'">
           <component v-for="vowel in sampleCompound" :key="vowel" :script="script" :text="vowel" class="q-ma-sm"
                       :is="flip ? 'flipcard' : 'learncard' " :highlight = "variantsCompounds.includes(consonant+vowelSign) && variant">
-          </component> <br/><br/>
+          </component>
+        <br/><br/>
+        <p>Letters for Kashmiri</p>
+          <component v-for="vowel in sampleCompoundka" :key="vowel" :script="script" :text="vowel" class="q-ma-sm"
+                      :is="flip ? 'flipcard' : 'learncard' " :highlight = "variantsCompounds.includes(consonant+vowelSign) && variant">
+          </component>
+          <br/><br/>
           <p> Special Forms </p>
           <component v-for="vowel in variantsCompounds" :key="vowel" :script="script" :text="vowel" class="q-ma-sm"
                       :is="flip ? 'flipcard' : 'learncard' " :highlight = "variantsCompounds.includes(consonant+vowelSign) && variant">
@@ -101,7 +107,7 @@ Guide Script
           </component>
         </span>
         <br/>
-        <span v-for="vowelSign in vowelSignska" :key="vowelSign + consonant + 'k'">
+        <span v-for="vowelSign in vowelSignskas" :key="vowelSign + consonant + 'k'">
           <component :script="script"  :text="consonant + vowelSign" class="q-ma-sm"
                       :is="flip ? 'flipcard' : 'learncard' " :highlight = "variantsCompounds.includes(consonant+vowelSign) && variant">
           </component>
@@ -110,7 +116,7 @@ Guide Script
     </span>
   </div>
    <div v-if="showCompound=='vowel'">
-   <span v-for="vowelSign in vowelSigns.concat(vowelSignska)" :key="vowelSign + 'c'">
+   <span v-for="vowelSign in vowelSigns.concat(vowelSignskas)" :key="vowelSign + 'c'">
         <span v-for="consonant in consonants.concat(consonantska)" :key="vowelSign + consonant + 'c'">
           <component :script="script"  :text="consonant + vowelSign" class="q-ma-sm"
                       :is="flip ? 'flipcard' : 'learncard'" :highlight = "variantsCompounds.includes(consonant+vowelSign) && variant">
