@@ -24,7 +24,7 @@
             color="dark"
             to="/editor"
           >
-            <span class="sharada" style="font-size:220%">𑆏𑆀</span>
+            <span class="sharada" style="font-size:220%; margin-top:5px">𑆏𑆀</span>
           </q-btn>
         </div>
         <q-toolbar-title>
