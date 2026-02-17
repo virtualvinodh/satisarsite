@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Sharada';
+  src: url('/fonts/Sharada.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  background-color: #fdf6e3; /* parchment light */
+}
+
+.sharada {
+  font-family: 'Sharada', serif;
+}
+
+/* Custom classes for scholarly feel */
+.bg-parchment {
+  background-color: #f5e6d3;
+}
+
+.bg-parchment-light {
+  background-color: #fdf6e3;
+}

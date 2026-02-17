@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Satisar: A Portal for Sharada</title>
+
+    <script src='https://s.keyman.com/kmw/engine/14.0.270/keymanweb.js'></script>
+    <script src='https://s.keyman.com/kmw/engine/14.0.270/kmwuibutton.js'></script>
+    <script>
+      (function(kmw) {
+        kmw.init({attachType:'manual'});
+        kmw.osk.hide();
+      })(keyman);
+
+      (function() {
+        var kmw=KeymanWeb;
+        kmw.KRS({
+          KN:"sharada_unicode_phonetic",
+          KI:"Keyboard_sharada_unicode_phonetic",
+          KL:"sharada_unicode_phonetic",
+          KLC:"en",
+          KFont:{family:"Sharada"},
+          KOskFont:{family:"Sharada"},
+          KF:"/keyboards/sharada_unicode_phonetic.js"
+        });
+
+        kmw.KRS({
+          KN:"sharada_inscript",
+          KI:"Keyboard_sharada_inscript",
+          KL:"sharada_inscript",
+          KLC:"en",
+          KFont:{family:"Sharada"},
+          KOskFont:{family:"Sharada"},
+          KF:"/keyboards/sharada_inscript.js"
+        });
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

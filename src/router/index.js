@@ -1,24 +1,56 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 
-import routes from './routes'
+const routes = [
+  {
+    path: '/',
+    component: () => import('../pages/IndexPage.vue')
+  },
+  {
+    path: '/studio',
+    component: () => import('../pages/ImageStudio.vue')
+  },
+  {
+    path: '/learn',
+    component: () => import('../pages/LearningPath.vue')
+  },
+  {
+    path: '/lesson/:id',
+    name: 'lesson',
+    component: () => import('../pages/Lesson.vue')
+  },
+  {
+    path: '/glossary',
+    component: () => import('../pages/VisualGlossary.vue')
+  },
+  {
+    path: '/reading',
+    component: () => import('../pages/ReadingRoom.vue')
+  },
+  {
+    path: '/worksheets',
+    component: () => import('../pages/Worksheets.vue')
+  },
+  {
+    path: '/books',
+    component: () => import('../pages/Books.vue')
+  },
+  {
+    path: '/game/match',
+    component: () => import('../pages/MatchGame.vue')
+  },
+  {
+    path: '/game/memory',
+    component: () => import('../pages/MemoryGame.vue')
+  },
+  {
+    path: '/game/flip',
+    component: () => import('../pages/FlipGame.vue')
+  }
+]
 
-Vue.use(VueRouter)
-
-const Router = new VueRouter({
-  /*
-   * NOTE! Change Vue Router mode from quasar.conf.js -> build -> vueRouterMode
-   *
-   * When going with "history" mode, please also make sure "build.publicPath"
-   * is set to something other than an empty string.
-   * Example: '/' instead of ''
-   */
-
-  // Leave as is and change from quasar.conf.js instead!
-  mode: process.env.VUE_ROUTER_MODE,
-  base: process.env.VUE_ROUTER_BASE,
-  scrollBehavior: () => ({ y: 0 }),
+const router = createRouter({
+  history: createWebHistory(),
   routes
 })
 
-export default Router
+export default router

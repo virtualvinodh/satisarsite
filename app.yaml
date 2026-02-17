@@ -1,0 +1,11 @@
+runtime: nodejs22
+
+handlers:
+  # Static assets
+  - url: /assets
+    static_dir: dist/assets
+
+  # All other URLs to index.html for SPA routing
+  - url: /.*
+    static_files: dist/index.html
+    upload: dist/index.html
