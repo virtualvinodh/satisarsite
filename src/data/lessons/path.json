@@ -1,0 +1,44 @@
+[
+  {
+    "id": "vowels",
+    "title": "Vowels",
+    "description": "Learn the basic vowels of Sharada",
+    "type": "characters",
+    "data_key": "vowels"
+  },
+  {
+    "id": "kashmiri_vowels",
+    "title": "Kashmiri Vowels",
+    "description": "Special vowels used in Kashmiri",
+    "type": "characters",
+    "data_key": "vowelska"
+  },
+  {
+    "id": "consonants",
+    "title": "Consonants",
+    "description": "Basic consonants",
+    "type": "characters",
+    "data_key": "consonants"
+  },
+  {
+    "id": "kashmiri_consonants",
+    "title": "Kashmiri Consonants",
+    "description": "Special consonants for Kashmiri",
+    "type": "characters",
+    "data_key": "consonantska"
+  },
+  {
+    "id": "vowel_signs",
+    "title": "Vowel Signs (Matras)",
+    "description": "How vowels modify consonants",
+    "type": "characters",
+    "data_key": "vowelSigns"
+  },
+  {
+    "id": "conjuncts_basic",
+    "title": "Basic Conjuncts",
+    "description": "Common combinations of consonants",
+    "type": "characters",
+    "data_key": "conjuncts2"
+  }
+]
